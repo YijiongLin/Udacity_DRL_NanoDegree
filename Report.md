@@ -1,9 +1,16 @@
 # Banana Navigation Project Report
 
+Youtube：
+
+https://www.youtube.com/watch?v=R5-DxW0c0uU&feature=youtu.be
+
 # Deep Q Network Introdution
 There are 8 details of the paper [1] worth to pay great attention to.
 1. Pre-processing: Extracting the Y channel, also known as luminance, from the RGB frame and rescale it to 84 by 84. 
-2. Frames Stacking : To encode a single frame the authors take the maximum value for each pixel colour value over the frame being encoded and the previous frame. This was necessary to remove flickering that is present in games where some objects appear only in even frames while other objects appear only in odd frames, an artefact caused by the limited number of sprites Atari 2600 can display at once.
+2. Frames Stacking : To encode a single frame the authors take the maximum value for each pixel colour value over the frame being encoded and the previous frame. This was necessary to remove flickering that is present in games where some objects appear only in even frames while Youtube：
+
+https://www.youtube.com/watch?v=R5-DxW0c0uU&feature=youtu.be
+other objects appear only in odd frames, an artefact caused by the limited number of sprites Atari 2600 can display at once.
 3. Frame-Skipping Technique: More precisely, the agent sees and selects actions on every $k$th frame instead of every frame, and its last action is repeated on skipped frames. Because running the emulator forward for one step requires much less computation than having the agent select an action, this technique allows the agent to play roughly $k$ times more games without significantly increasing the runtime. We use $k$=4 for all games.
 4. Experience Replay： This approach has several advantages over standard online Q-learning. First, each step of experience is potentially used in many weight updates, which allows for greater data efficiency. Second, learning directly from consecutive samples is inefficient, owing to the strong correlations between the samples; randomizing the samples breaks these correla- tions and therefore reduces the variance of the updates. Third, when learning on- policy the current parameters determine the next data sample that the parameters are trained on. For example, if the maximizing action is to move left then the train- ing samples will be dominated by samples from the left-hand side; if the maximiz- ing action then switches to the right then the training distribution will also switch. It is easy to see how unwanted feedback loops may arise and the parameters could get stuck in a poor local minimum, or even diverge catastrophically.
 5. Fixed Q Target：
