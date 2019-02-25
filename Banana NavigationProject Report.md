@@ -31,19 +31,19 @@ Four discrete actions are available:
 ## Experiment Setting
 In these experiments, we used the A algorithm with minibatches of size 32. The behaviour policy during training was $\epsilon$-greedy with $\epsilon$ annealed linearly from 1.0 to 0.01 with the decay rate 0.995, and fixed at lowest value 0.01. I trained for a total of 1600 episodes, which maximum time step is 1000. Used a replay memory of 1 million most recent frames, and samples uniformly at random from replay buffer when performing updates. Learning rate $\alpha$ is 0.0005, and discount factor $\gamma$ is 0.99. And I set Frame-Skipping parameter as 4, that means he agent sees and selects actions on every $4$th frame instead of every frame. 
 
-![-w800](media/15507609593292/vanilla_dqn.png)
+![-w800](http://pn5xig77e.bkt.clouddn.com/vanilla_dqn.png)
 
 The solid lines are the median scores, and the shaded area denotes the interquartile range across 8 random initializations. While the variability between runs is substantial, there are significant differences in final achieved score, and also in learning speed.
 ##Advanced DQN
 Two improvements had been done in this navigation project. Detailed learning curves for vanilla (red), double Q learning (blue), dueling Q network (green) and Double Q learning based on dueling network.  Again, the solid lines are the median scores, and the shaded area denotes the interquartile range across 8 random initializations. While the variability between runs is substantial, there are significant differences in final achieved score, and also in learning speed.
-![-w800](media/15507609593292/all_the_data.png)
+![-w800](http://pn5xig77e.bkt.clouddn.com/all_the_data.png)
 
 In the following I will introduce the relative advanced DQN improvement as compared to the vanilla one.
 ###Double Q Learning
 In order to achieve better training performance, here I applied the double Q learning method to improve navigation DQN.
 
 The double Q learning can reduce the learning signal noise. To be more specifically, the vanilla DQN tends to exaggerate the estimated Q value: when you take the max, you're going to exaggerate this error where the Q function is bigger than it should be, which leads to overestimation.
-![-w800](media/15507609593292/double_dqn.png)
+![-w800](http://pn5xig77e.bkt.clouddn.com/double_dqn.png)
 
 The fig. shows that the double Q learning is not only more stable than the vanilla one,  but also more quickly converge and achieve higher scores, which shows the efficiency of reducing the learning noise.
 ###Dueling DQN
@@ -54,10 +54,10 @@ Why this works? When we have V output, which stands for the expected value of th
 To achieve this approach, A constraint must be considered.
 * Each state's Advantages summation so equals to zero, in order to force the network to update more the V instead of A.
 * The normalization of Advantage: minus all the A value with the mean of all A value, so that the normalized A summation equals to one.
-![-w500](media/15503053697557/15505457464422.jpg)
+![-w500](http://pn5xig77e.bkt.clouddn.com/15505457464422.jpg)
 
 Here is the experiment result, as we can see there is no obvious different with the above two, that is because the input state is simple and easy to learn. But if we input the raw RGB pixal image, we would see the algorithm different performance.
-![-w800](media/15507609593292/dueling_dqn.png)
+![-w800](http://pn5xig77e.bkt.clouddn.com/dueling_dqn.png)
 
 
 ### Further Improvement
